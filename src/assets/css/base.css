@@ -1,6 +1,15 @@
 @import "./normalize.css";
 
 /*:root -> 获取根元素html*/
+/* html {
+  overflow-y: scroll;
+} */
+/* :root body {
+  position: absolute;
+
+} */
+
+ 
 :root {
   --color-text: #666;
   --color-high-text: #ff5777;
@@ -8,6 +17,8 @@
   --color-background: #fff;
   --font-size: 14px;
   --line-height: 1.5;
+  /* overflow-y: auto;
+  overflow-x: hidden; */
 }
 
 *,
@@ -26,6 +37,8 @@ body {
   color: var(--color-text);
   /* rem vw/vh */
   width: 100vw;
+  /* overflow: hidden; */
+
 }
 
 a {
