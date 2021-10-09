@@ -1,7 +1,7 @@
 <template>
 <div id="home">
     <nav-bar class="nav-bar">
-        <div slot="center">购物车</div>
+        <div slot="center">购物街</div>
     </nav-bar>
     <scroll class="content" @scroll="contextScroll" ref="scroll" @pullingUp="loadMore">
         <home-swiper :banners="banners"/>
