@@ -3,13 +3,9 @@
     <div class="menu-list">
     <div class="menu-list-item" @click="itemClick(index)" :class="{active: currentIndex ===index}"  v-for="(item,index) in categories" :key="index" >
         {{item.title}}
-
     </div>
-
 </div>
 </scroll>
-
-
 </template>
 
 <script>
@@ -51,9 +47,7 @@ export default {
     line-height: 40px;
     text-align: center;
     font-size: 14px;
-    background-color: rgb(246, 246, 246);
-    
-   
+    background-color: rgb(246, 246, 246);  
 }
 .active {
     background-color: #fff;

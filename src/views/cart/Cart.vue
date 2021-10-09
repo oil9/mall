@@ -23,7 +23,6 @@ export default {
      Scroll,
      CartList,
      CartBottomBar
-
  },
  computed: {
      ...mapGetters({
@@ -31,7 +30,7 @@ export default {
          list:'cartList'})
  },
  activated () {
-     this.$refs.scroll.refresh()
+    this.$refs.scroll.refresh()
  }
  }
 </script>
@@ -44,9 +43,9 @@ export default {
 .content{
     position: absolute;
     top:44px;
-      bottom: 89px;
-      left:0;
-      right:0;
+    bottom: 89px;
+    left:0;
+    right:0;
 }
 
 .nav-bar {

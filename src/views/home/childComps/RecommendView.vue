@@ -5,11 +5,8 @@
             <img :src="item.image" alt="">
             <span>{{item.title}}</span>
         </a>
-
     </div>
-    
 </div>
-
 </template>
 
 <script>

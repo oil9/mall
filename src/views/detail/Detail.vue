@@ -1,38 +1,18 @@
 <template>
 <div id="detail">
-    <detail-nav-bar @TacClick="TacClick" :current-index="currentIndex">
-        
-    </detail-nav-bar>
-     
+    <detail-nav-bar @TacClick="TacClick" :current-index="currentIndex"/>
     <scroll class="content" ref="scroll" @scroll="contentScroll">
-       
-       
-        
-        <detail-swiper :topImages="topImages">
-
-    </detail-swiper>
-    <detail-base-info :goods="goods">
-
-    </detail-base-info>
-    <detail-shop-info :shop="shop">
-
-    </detail-shop-info>
-    <detail-goods-info :detail-info="detailInfo" @imageLoad="imageLoad">
-
-    </detail-goods-info>
-    <detail-param-info ref="param" :param-info="paramInfo">
-
-    </detail-param-info>
-    <detail-comment-info ref="comment" :comment-info="commentInfo">
-
-    </detail-comment-info>
-    <goods-list  ref="recommend" :goods="goodsList"></goods-list>
+        <detail-swiper :topImages="topImages"/>
+        <detail-base-info :goods="goods"/>
+        <detail-shop-info :shop="shop"/>
+        <detail-goods-info :detail-info="detailInfo" @imageLoad="imageLoad"/>
+        <detail-param-info ref="param" :param-info="paramInfo"/>
+        <detail-comment-info ref="comment" :comment-info="commentInfo"/>
+        <goods-list  ref="recommend" :goods="goodsList"/>
     </scroll>
-    <top-back @click.native="backTop" v-show="showBackTop"></top-back>
-    <detail-bottom-bar @addToCart="addToCart"></detail-bottom-bar>
-   
+    <top-back @click.native="backTop" v-show="showBackTop"/>
+    <detail-bottom-bar @addToCart="addToCart"/>  
 </div>
-
 </template>
 
 <script>
@@ -64,7 +44,6 @@ export default {
    GoodsList,
    TopBack,
    DetailBottomBar
- 
  },
  data() {
      return {
@@ -87,15 +66,13 @@ export default {
      this.getRecommend()
  },
  methods: {
-     addToCart(){
-         
+     addToCart(){   
          const obj={}
          obj.iid=this.iid
          obj.imgURL =this.topImages[0]
          obj.title=this.goods.title
          obj.desc = this.goods.desc
          obj.price = this.goods.realPrice
-
          this.$store.commit('addCart',obj)
      },
      imageLoad() {
@@ -106,8 +83,6 @@ export default {
          this.scrollList.push(this.$refs.comment.$el.offsetTop)
          this.scrollList.push(this.$refs.recommend.$el.offsetTop)
          this.scrollList.push(Number.MAX_VALUE)
-
-
      },
      getDetail(iid) {
          getDetail(iid).then(res=>{
@@ -118,12 +93,9 @@ export default {
              this.shop =new Shop(data.shopInfo)
              this.detailInfo =data.detailInfo
              this.paramInfo =new GoodsParam(data.itemParams.info, data.itemParams.rule)
-
              if(data.rate.list) {
                  this.commentInfo =data.rate.list[0];
              }
-
-
          })
      },
      getRecommend() {
@@ -133,12 +105,10 @@ export default {
      },
      backTop() {
          this.$refs.scroll.scrollTo(0,0)
-        
      },
      contentScroll (position) {
          this.showBackTop = position.y <-1000
          this.ListScrollTheme(-position.y)
-
      },
      ListScrollTheme(position) {
          let length=this.scrollList.length
@@ -151,8 +121,6 @@ export default {
              }
 
          }
-
-
      },
      TacClick(index) {
          this.$refs.scroll.scrollTo(0,-this.scrollList[index],0)

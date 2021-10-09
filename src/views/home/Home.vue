@@ -4,23 +4,18 @@
         <div slot="center">购物车</div>
     </nav-bar>
     <scroll class="content" @scroll="contextScroll" ref="scroll" @pullingUp="loadMore">
-    <home-swiper :banners="banners"/>
-    <recommend-view :recommends="recommends"/>
-    <feature-view/>
-    <tab-control class="tab-control" @tabClick="tabClick"></tab-control>
-    <goods-list :goods="goods[currenType].list"></goods-list>
+        <home-swiper :banners="banners"/>
+        <recommend-view :recommends="recommends"/>
+        <feature-view/>
+        <tab-control class="tab-control" @tabClick="tabClick"></tab-control>
+        <goods-list :goods="goods[currenType].list"></goods-list>
     </scroll>
-    <top-back @click.native="backTop" v-show="showBackTop">
-    </top-back>
-  
-    
+    <top-back @click.native="backTop" v-show="showBackTop"/>
 </div>
-
 </template>
 
 <script>
 import NavBar from 'components/common/navbar/NavBar'
-import Vue from 'vue'
 import {getMultiData,getProductData} from 'network/home'
 import HomeSwiper from './childComps/HomeSwiper'
 import RecommendView from './childComps/RecommendView'
@@ -39,13 +34,12 @@ export default {
              'pop':{page:1,list:[]},
              'new':{page:1,list:[]},
              'sell':{page:1,list:[]}
-             
+
          },
          currenType:'pop',
         showBackTop:false,
         saveY:0,
-        str:'string'
-
+        
      }
  },
  components:{
@@ -66,12 +60,6 @@ export default {
     this.$bus.$on('imgLoad',()=>{
         this.$refs.scroll.refresh()
     })
-    // console.log(this.str);
-    // // this.str[6] =7
-    // Vue.set(this.str,'s','str')
-    // console.log(this.str);
-     
-     
  },
  activated() {
      this.$refs.scroll.scrollTo(0,this.saveY,0)
@@ -88,7 +76,6 @@ export default {
             console.log(res);
             this.banners =res.data.banner.list
             this.recommends =res.data.recommend.list
-         
      })
 
      },
@@ -116,13 +103,9 @@ export default {
      },
      contextScroll(position) {
          this.showBackTop = position.y < -1000
-         
-         
-
      },
      backTop() {
-         this.$refs.scroll.scrollTo(0,0)
-        
+         this.$refs.scroll.scrollTo(0,0)  
      },
      loadMore(){
          this.getProductData(this.currenType)
@@ -139,7 +122,7 @@ export default {
     position: relative;
   }
 
-  .nav-bar {
+.nav-bar {
     background-color: var(--color-tint);
     position:fixed;
     left:0;
@@ -148,13 +131,13 @@ export default {
     z-index: 9;
   }
 
-  .tab-control {
+.tab-control {
     position:sticky;
     top:44px;
     z-index: 9;
   }
 
-  .content {
+.content {
       position: absolute;
       top:44px;
       bottom: 49px;
